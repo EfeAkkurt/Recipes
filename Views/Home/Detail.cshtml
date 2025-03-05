@@ -1,0 +1,10 @@
+﻿@model Recipe
+@{
+    ViewData["Title"] = Model.RecipeName;
+}
+
+<h1>@Model.RecipeName</h1>
+<p><img src="@Model.ImageUrl" /></p>
+<p>@Html.Raw(Model.Ingredients)</p>
+<p>@Html.Raw(Model.Preparation)</p>
+

@@ -1,0 +1,31 @@
+﻿@model Recipe
+@if (ViewData["SuccessMsg"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Başarılı!</strong> @ViewData["SuccessMsg"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<h1>@(Model == null ? "Yeni Tarif ekle" : "Düzenle")</h1>
+<form method="post" autocomplete="off">
+    <p><label><strong>İsim</strong><br /><input required placeholder="İsim" name="RecipeName" value="@Model?.RecipeName" /></label></p>
+    <p><label><strong>Görsel</strong><br /><input type="url" required placeholder="Görsel URL" name="ImageUrl" value="@Model?.ImageUrl" /></label></p>
+    @if (Model != null)
+    {
+        <p><img src="@Model.ImageUrl" /></p>
+    }
+    <p><label><strong>Malzelemeler</strong><br /><textarea required name="Ingredients" placeholder="Malzelemeler" cols="100" rows="3">@Model?.Ingredients</textarea></label></p>
+    <p><label><strong>Hazırlanış</strong><br /><textarea required name="Preparation" placeholder="Hazırlanış" cols="100" rows="10">@Model?.Preparation</textarea></label></p>
+    @if (Model == null)
+    {
+        <p><button class="btn btn-primary">Ekle</button></p>
+    }
+    else
+    {
+        <p>
+            <button class="btn btn-success">Kaydet</button>
+            <a href="/Admin" class="btn btn-link">Vazgeç</a>
+        </p>
+    }
+</form>
